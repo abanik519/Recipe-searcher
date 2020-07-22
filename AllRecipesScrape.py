@@ -33,13 +33,14 @@ def getImage(input):
     soup = BeautifulSoup(response.content, "html.parser")
 
     # finding AllRecipes images in the soup
-    images = soup.find_all("img", attrs={"class": "grid-col__hub-image"})
+    images = soup.find_all("img", attrs={"class": "fixed-recipe-card__img"})
 
     # downloading images
     for image in images:
         image_src = image["data-original-src"]
         urllib.request.urlretrieve(image_src, 'api\Database\Images\\' + data + '.jpg')
         return (image["data-original-src"])
+        break
     
 if __name__ == "__main__":
     print(getImage("apple  banana casserole with almonds"))
